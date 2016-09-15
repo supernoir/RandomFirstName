@@ -1,27 +1,39 @@
 'use strict'
 
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+
 const names = [
     "Franz", "Henry", "Jack", "Maurice"
     ]
 
-for (let i = 0; i < names.length; i++) {
-    console.log(names[i]);
+
+class ShowSuggestedNames extends React.Component {
+    constructor(props){
+        super(props);
+        this.props.names = names;
+    }
+
+    render() {
+        this.props.names = (name) => {
+            return <li key={name}>{name}</li>
+        }
+    }
 }
 
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-class RandomName extends React.Component{
+class RandomName extends React.Component {
     render() {
         return <form className="firstname">
         <label htmlFor="firstname">First Name </label>
         <input id="firstname" type="text"></input>
         <input type="submit" value="Randomize"></input>
+        <hr />
+        <ShowSuggestedNames name="Henry Thoureaux" />
         </form>
     }
 }
-
 
 let randomFirstNameGenerator = () => {
     let x = Math.random(255);
